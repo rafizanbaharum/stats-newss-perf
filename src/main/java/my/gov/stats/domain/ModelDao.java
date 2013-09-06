@@ -62,6 +62,14 @@ public class ModelDao {
         return (LongColumnModel) query.uniqueResult();
     }
 
+    @Profiled
+    public HugeColumnModel findByHugeColumnId(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select lcm from HugeColumnModel lcm where id = :id");
+        query.setLong("id", id);
+        return (HugeColumnModel) query.uniqueResult();
+    }
+
 
     public void save(Serializable serializable) {
         Session session = sessionFactory.getCurrentSession();
